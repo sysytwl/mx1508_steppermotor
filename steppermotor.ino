@@ -10,5 +10,5 @@ void setup() {
 
 void loop() {
     sm.rotate(360);
-    //delay(5000);
+    delay(5000);
 }
