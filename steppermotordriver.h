@@ -2,11 +2,11 @@
 
 class StepperMotor {
 public:
-    StepperMotor(int pinA, int pinB, int pinC, int pinD, int stepsPerCircle, int speed) {
-        _pins[0] = pinA;
-        _pins[1] = pinB;
-        _pins[2] = pinC;
-        _pins[3] = pinD;
+    StepperMotor(int pin1A, int pin1B, int pin2A, int pin2B,, int stepsPerCircle, int speed) {
+        _pins[0] = pin1A;
+        _pins[1] = pin1B;
+        _pins[2] = pin2A;
+        _pins[3] = pin2B;
         _stepsPerCircle = stepsPerCircle;
         _speed = (60000000L / stepsPerCircle) / speed; // Convert RPM to microseconds per step
 
@@ -14,6 +14,10 @@ public:
         for (int i = 0; i < 4; i++) {
             pinMode(_pins[i], OUTPUT);
         }
+    }
+
+    void changeRPM(int speed){
+        _speed = (60000000L / stepsPerCircle) / speed; // Convert RPM to microseconds per step
     }
 
     // Rotate the stepper motor forward by a specified number of steps
@@ -95,7 +99,8 @@ private:
     int _stepsPerCircle;
     int _speed;
     int _currentStep;
-    int _stepDictionary[4] = {0b1100, 0b0110, 0b0011, 0b1001};
+    //int _stepDictionary[4] = {0b1100, 0b0110, 0b0011, 0b1001};
+    int _stepDictionary[4] = {0b1010, 0b0110, 0b0101, 0b1001};
     //int _stepDictionary[4] = {0b1000, 0b0100, 0b0010, 0b0001};
 
     // Function to drive the stepper motor based on the step pattern
